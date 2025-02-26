@@ -80,7 +80,7 @@ local function sendBugReport(problem, issue)
 	})
 end
 
-lib = urlLoad("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua")
+lib = urlLoad("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua")
 if not lib then
 	local msg = Instance.new("Message", workspace)
 	msg.Text = "Fire~Library failed to initilize!\n\n[Sending auto bug report]"
@@ -94,7 +94,7 @@ message("NullFire Initilization begun!\nDoing some base checks & getting data...
 
 if isLoaded then return message("NullFire is already loaded!") end
 
-local jsonData = urlGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Data/PersonalPlayerData.json")
+local jsonData = urlGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Data/PersonalPlayerData.json")
 local s,e = pcall(function()
 	getGlobalTable().PersonalPlayerData = getGlobalTable().PersonalPlayerData or game.HttpService:JSONDecode(jsonData)
 end)
@@ -125,7 +125,7 @@ if ppd[tostring(game.Players.LocalPlayer.UserId)] then
 	end
 end
 
-local jsonData = game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Data/SupportedGames.json")
+local jsonData = game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Data/SupportedGames.json")
 local supportedGames
 local s,e = pcall(function()
 	supportedGames = game.HttpService:JSONDecode(jsonData)
@@ -150,7 +150,7 @@ for i,v in supportedGames do
 			return message("The script for "..i.." is not currently working!"..(typeof(v[1]) ~= "string" and "" or v[1]))
 		end
 		getGlobalTable().GameName = i
-		local url = "https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Loaders/"..i.."/Main.lua"
+		local url = "https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Loaders/"..i.."/Main.lua"
 		message("NullFire Initilization done!\nLoading script for: "..i.."\n\n("..url..")")
 		return urlLoad(url)
 	end
