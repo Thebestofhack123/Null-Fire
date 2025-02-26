@@ -1,2 +1,2 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Fire-Hub/main/Loader"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Fire-Hub/main/Loader"))()
 -- created for dumb people who clicking on the link instead of copying the script
