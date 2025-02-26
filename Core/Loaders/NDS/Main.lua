@@ -27,7 +27,7 @@ end
 
 getGlobalTable().FireHubLoaded = true
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua"))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua"))()
 local closed = false
 local cons = {}
 local plr = game.Players.LocalPlayer
