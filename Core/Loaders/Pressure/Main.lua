@@ -77,7 +77,7 @@ local function getGlobalTable()
 end
 
 if game.PlaceId == 12411473842 then
-	return loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/refs/heads/main/Core/Loaders/Pressure-Lobby/Main.lua"))()
+	return loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/refs/heads/main/Core/Loaders/Pressure-Lobby/Main.lua"))()
 end
 
 getGlobalTable().MaxPlayers = game.ReplicatedStorage.MaxPlayers.Value
@@ -86,8 +86,8 @@ getGlobalTable().FireHubLoaded = true
 local closed = false
 local cons = {}
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua", true))()
-local espLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/ESP/Main.lua", true))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua", true))()
+local espLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Libraries/ESP/Main.lua", true))()
 
 espLib.Values = vals.ESP
 local function espFunc(...)
