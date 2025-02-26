@@ -6,7 +6,7 @@ local lib = getGlobalTable()._FIRELIB
 local plr = game:GetService("Players").LocalPlayer
 local signals
 pcall(function()
-	signals = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Signals/Main.lua"))()
+	signals = loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Libraries/Signals/Main.lua"))()
 end)
 
 getGlobalTable().NFUSERS = getGlobalTable().NFUSERS or {}
@@ -44,7 +44,7 @@ local webhook = function(settings) -- you can try, i fixed all ping vulnerabilit
 	end)
 	return tostring(res.StatusCode):sub(1,1) ~= "4"
 end
-local dsc = "https://discord.gg/4bexJD6WVT" --bNuJfzANUV nullfire discor
+local dsc = "https://discord.gg/" --bNuJfzANUV nullfire discor
 
 return function(window)
 	if typeof(getGlobalTable().GameName) ~= "string" then
@@ -112,7 +112,7 @@ return function(window)
 			end})
 			game:GetService("Players").PlayerRemoving:Connect(function(plr)
 				if plr == game:GetService("Players").LocalPlayer and keepOnTp and window.Opened then
-					getfenv().queueonteleport('print("skibidi sigma")\nloadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Loader"))()')
+					getfenv().queueonteleport('print("skibidi sigma")\nloadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Loader"))()')
 				end
 			end)
 		end
