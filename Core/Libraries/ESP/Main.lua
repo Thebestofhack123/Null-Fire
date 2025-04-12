@@ -21,13 +21,15 @@ local espLib; espLib = {
 	Values = {},
 	ESPApplied = {}
 }
-local cons = {}
 
-function GetRGBValue()
+local cons = {}
+local speed = 24
+
+local function GetRGBValue()
 	return Color3.new(
-		math.sin(((os.clock() * 12) % 360) / 360 * 2 * math.pi) * 0.5 + 0.5,
-		math.sin((((os.clock() * 12) % 360) / 360 + 1/3) * 2 * math.pi) * 0.5 + 0.5,
-		math.sin((((os.clock() * 12) % 360) / 360 + 2/3) * 2 * math.pi) * 0.5 + 0.5
+		math.sin(((os.clock() * speed) % 360) / 360 * 2 * math.pi) * 0.5 + 0.5,
+		math.sin((((os.clock() * speed) % 360) / 360 + 1/3) * 2 * math.pi) * 0.5 + 0.5,
+		math.sin((((os.clock() * speed) % 360) / 360 + 2/3) * 2 * math.pi) * 0.5 + 0.5
 	)
 end
 
@@ -44,6 +46,7 @@ local function applyESP(obj, espSettings)
 	--espSettings.Object = espSettings.Object or obj
 
 	local col = espSettings.Color
+	local con1, con2, con3, con4;
 
 	local function updateESP()
 		local found = table.find(espLib.ESPApplied, obj)
@@ -69,7 +72,8 @@ local function applyESP(obj, espSettings)
 		local bg = ESPFolder:FindFirstChild("BillboardGui") or Instance.new("BillboardGui", ESPFolder)
 		bg.Adornee = espSettings.Object or obj
 		bg.AlwaysOnTop = true
-		bg.Size = UDim2.fromOffset(100, 100)
+		bg.ClipsDescendants = false
+		bg.Size = UDim2.fromOffset(250, 200)
 		bg.MaxDistance = math.huge
 		bg.Enabled = not not espLib.ESPValues[espSettings.ESPName]
 
@@ -96,9 +100,17 @@ local function applyESP(obj, espSettings)
 		label.Text = espSettings.Text
 		label.TextScaled = true
 		label.Font = Enum.Font.Code
-		label.Size = UDim2.fromScale(1, 0.2)
-		label.Position = UDim2.new(0, 0, 0.5, 24)
-		label.AnchorPoint = Vector2.new(0, 0.5)
+		label.Size = UDim2.new(1, 0, 0, #label.Text:gsub("\r", "\n"):split("\n") * 20)
+		label.Position = UDim2.new(0, 0, 0.5, 10)
+		label.AnchorPoint = Vector2.new(0, 0)
+		label.RichText = true
+		
+		cons[obj] = cons[obj] or {}
+		cons[obj][4] = cons[obj][4] or label:GetPropertyChangedSignal("Text"):Connect(function()
+			label.Size = UDim2.new(1, 0, 0, #label.Text:gsub("\r", "\n"):split("\n") * 20)
+		end)
+		
+		con4 = cons[obj][4]
 
 		local stroke = label:FindFirstChild("UIStroke") or Instance.new("UIStroke", label)
 		stroke.Thickness = 2.5
@@ -106,7 +118,6 @@ local function applyESP(obj, espSettings)
 
 	deapplyESP()
 	updateESP()
-	local con1, con2, con3;
 
 	cons[obj] = {}
 
@@ -116,11 +127,15 @@ local function applyESP(obj, espSettings)
 			con3 = nil
 			cons[obj][3] = nil
 		end
-		con3 = game["Run Service"].RenderStepped:Connect(function()
+		con3 = game:GetService("RunService").RenderStepped:Connect(function()
 			if not obj or not obj.Parent or not obj:FindFirstChild("ESPFolder") then
 				con1:Disconnect()
 				con2:Disconnect()
 				con3:Disconnect()
+				if con4 then
+					con4:Disconnect()
+					con4 = nil
+				end
 				con3 = nil
 				cons[obj][3] = nil
 				col = espSettings.Color
@@ -147,6 +162,10 @@ local function applyESP(obj, espSettings)
 	con2 = obj.Destroying:Connect(function()
 		con1:Disconnect()
 		con2:Disconnect()
+		if con4 then
+			con4:Disconnect()
+			con4 = nil
+		end
 		if con3 then
 			con3:Disconnect()
 			con3 = nil
