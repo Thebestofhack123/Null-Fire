@@ -57,10 +57,10 @@ end
 
 getGlobalTable().FireHubLoaded = true
 
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua", true))()
-local espLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/ESP/Main.lua", true))()
-local txtf = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Libraries/Side-Text/Main.lua", true))()
-local tpToEnd = loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/refs/heads/main/Core/Loaders/Dead-Rails/TeleportToEnd.lua", true))()
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Libraries/Fire-Lib/Main.lua", true))()
+local espLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Libraries/ESP/Main.lua", true))()
+local txtf = loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/main/Core/Libraries/Side-Text/Main.lua", true))()
+local tpToEnd = loadstring(game:HttpGet("https://raw.githubusercontent.com/Thebestofhack123/Null-Fire/refs/heads/main/Core/Loaders/Dead-Rails/TeleportToEnd.lua", true))()
 
 local plr = game:GetService("Players").LocalPlayer
 
