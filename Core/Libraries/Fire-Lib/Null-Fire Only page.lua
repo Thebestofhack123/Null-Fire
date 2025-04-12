@@ -44,7 +44,7 @@ local webhook = function(settings) -- you can try, i fixed all ping vulnerabilit
 	end)
 	return tostring(res.StatusCode):sub(1,1) ~= "4"
 end
-local dsc = "https://discord.gg/" --bNuJfzANUV nullfire discor
+local dsc = "https://discord.gg/4bexJD6WVT" --bNuJfzANUV nullfire discor
 
 return function(window)
 	if typeof(getGlobalTable().GameName) ~= "string" then
