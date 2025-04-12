@@ -46,7 +46,7 @@ if not h:FindFirstChild(n) then
 	Instance2.TextColor3 = Color3.new(1, 1, 1)
 	Instance2.ClipsDescendants = false
 	Instance2.BorderColor3 = Color3.new(0, 0, 0)
-	Instance2.Text = "Left"
+	Instance2.Text = ""
 	Instance2.SelectionOrder = 0
 	Instance2.BackgroundColor3 = Color3.new(1, 1, 1)
 	Instance2.Rotation = 0
@@ -86,7 +86,7 @@ if not h:FindFirstChild(n) then
 	Instance3.TextColor3 = Color3.new(1, 1, 1)
 	Instance3.ClipsDescendants = false
 	Instance3.BorderColor3 = Color3.new(0, 0, 0)
-	Instance3.Text = "Right"
+	Instance3.Text = ""
 	Instance3.SelectionOrder = 0
 	Instance3.BackgroundColor3 = Color3.new(1, 1, 1)
 	Instance3.Rotation = 0
@@ -126,7 +126,7 @@ if not h:FindFirstChild(n) then
 	Instance4.TextColor3 = Color3.new(1, 1, 1)
 	Instance4.ClipsDescendants = false
 	Instance4.BorderColor3 = Color3.new(0, 0, 0)
-	Instance4.Text = "Bottom"
+	Instance4.Text = ""
 	Instance4.SelectionOrder = 0
 	Instance4.BackgroundColor3 = Color3.new(1, 1, 1)
 	Instance4.Rotation = 0
@@ -166,7 +166,7 @@ if not h:FindFirstChild(n) then
 	Instance5.TextColor3 = Color3.new(1, 1, 1)
 	Instance5.ClipsDescendants = false
 	Instance5.BorderColor3 = Color3.new(0, 0, 0)
-	Instance5.Text = "Top"
+	Instance5.Text = ""
 	Instance5.SelectionOrder = 0
 	Instance5.BackgroundColor3 = Color3.new(1, 1, 1)
 	Instance5.Rotation = 0
@@ -177,6 +177,9 @@ else
 	Instance1 = h:FindFirstChild(n)
 end
 
+pcall(function()
+	Instance1.OnTopOfCoreBlur = true
+end)
 
 ----------
 
@@ -196,7 +199,7 @@ require = getfenv().require
 
 -- Your code down below --
 
-return function(action, side, ...)
+local fc; fc = function(action, side, ...)
 	side = tostring(side or nil)
 	action = tostring(action or nil)
 
@@ -210,7 +213,7 @@ return function(action, side, ...)
 		else
 			side.Text = tostring(...)
 		end
-		side.Size = UDim2.fromScale(0.95, ((#side.Text:split("\n"))-1)*0.05)
+		side.Size = UDim2.fromScale(0.95, (#side.Text:split("\n"))*0.025)
 	elseif action == "ClearText" then
 		if side ~= "nil" and side ~= "all" and side ~= "All" then
 			local side = Instance1:FindFirstChild(side)
@@ -233,11 +236,11 @@ return function(action, side, ...)
 				return warn("No side '"..side.."' found")
 			end
 			side.Text = tostring(...)
-			side.Size = UDim2.fromScale(0.95, ((#side.Text:split("\n"))-1)*0.05)
+			side.Size = UDim2.fromScale(0.95, (#side.Text:split("\n"))*0.025)
 		else
 			for i,side in Instance1:GetChildren() do
 				side.Text = tostring(...)
-				side.Size = UDim2.fromScale(0.95, ((#side.Text:split("\n"))-1)*0.05)
+				side.Size = UDim2.fromScale(0.95, (#side.Text:split("\n"))*0.025)
 			end
 		end
 	elseif action == "GetText" then
@@ -258,3 +261,5 @@ return function(action, side, ...)
 		warn("Unknown action '"..action.."'")
 	end
 end
+
+return fc
